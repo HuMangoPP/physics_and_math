@@ -28,6 +28,8 @@ public class Universe {
         planetGroup = new PlanetGroup();
         input = new UserInput();
 
+        System.out.println("Click or press a key to apply a radially outwards force");        
+
         this.panel = new GamePanel();
         this.panel.setBackground(Color.BLACK);
         this.panel.setOpaque(false);
