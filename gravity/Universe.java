@@ -28,7 +28,9 @@ public class Universe {
         planetGroup = new PlanetGroup();
         input = new UserInput();
 
-        System.out.println("Click or press a key to apply a radially outwards force");        
+        System.out.println("Press space to apply a radially outwards force");
+        System.out.println("Press del to clear the planets");
+        System.out.println("Press enter to spawn a new planet"); 
 
         this.panel = new GamePanel();
         this.panel.setBackground(Color.BLACK);
@@ -137,9 +139,14 @@ public class Universe {
 
         PlanetGroup() {
             planets.add(new Planet(200));
-            // planets.add(new Planet(300));
-            // planets.add(new Planet(400));
-            // planets.add(new Planet(500));
+        }
+
+        public void spawn() {
+            planets.add(new Planet(200));
+        }
+
+        public void clear() {
+            planets.clear();
         }
 
         public void update(Sun sun) {
@@ -214,13 +221,32 @@ public class Universe {
         @Override
         public void keyPressed(KeyEvent e) {
             // TODO Auto-generated method stub
-            
+            if (e.getKeyCode()==KeyEvent.VK_D) {
+                sun.x+=5;
+            } else if (e.getKeyCode()==KeyEvent.VK_A) {
+                sun.x-=5;
+            }
+
+            if (e.getKeyCode()==KeyEvent.VK_W) {
+                sun.y-=5;
+            } else if (e.getKeyCode()==KeyEvent.VK_S) {
+                sun.y+=5;
+            }
+
+            if (e.getKeyCode()==KeyEvent.VK_DELETE) {
+                planetGroup.clear();
+            }
+            if (e.getKeyCode()==KeyEvent.VK_ENTER) {
+                planetGroup.spawn();
+            }
         }
 
         @Override
         public void keyReleased(KeyEvent e) {
             // TODO Auto-generated method stub
-            planetGroup.applyForce();
+            if (e.getKeyCode()==KeyEvent.VK_SPACE) {
+                planetGroup.applyForce();
+            }
         }
         
     }
