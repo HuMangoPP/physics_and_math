@@ -78,7 +78,7 @@ while True:
     display.fill(BLACK)
 
     for index,point in enumerate(points):
-        rotated2d = np.dot(rotate_x,point.reshape((3,1)))
+        rotated2d = np.dot(rotate_y,point.reshape((3,1)))
         rotated2d = np.dot(rotate_y,rotated2d)
         rotated2d = np.dot(rotate_z,rotated2d)
         projected2d = np.dot(projection_matrix,rotated2d)
